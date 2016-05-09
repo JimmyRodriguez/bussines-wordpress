@@ -3,6 +3,26 @@ version: '2'
 services:
   web:
     build: .
+    links:
+      - myslq
+
+    environment:
+      - WORDPRESS_DB_PASSWORD=password
 
     ports:
       - "8080:8080"
+
+    depends_on:
+      - db
+
+    volumes:
+      - ./inhost:/var/www/html/wp-content/plugins/inhost/
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - /data/mysql:/var/lib/myslql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      
+      - MYSQL_DATABASE=wordpress
