@@ -7,7 +7,7 @@ web:
     - WORDPRESS_DB_PASSWORD=password
 
   ports:
-    - "8080:8080"
+    - "127.0.0.3:8080:8080"
 
   volumes:
       - ./inhost:/var/www/html/wp-content/plugins/inhost/
