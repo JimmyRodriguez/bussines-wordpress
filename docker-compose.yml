@@ -1,21 +1,17 @@
 web:
-  build: .
-  links:
-    - myslq
-
-  environment:
-    - WORDPRESS_DB_PASSWORD=password
-
-  ports:
-    - "127.0.0.3:8080:8080"
-
-  volumes:
-      - ./inhost:/var/www/html/wp-content/plugins/inhost/
-      
+    build: .
+    links:
+     - mysql
+    environment:
+     - WORDPRESS_DB_PASSWORD=password
+    ports:
+     - "127.0.0.3:8080:80"
+    volumes:
+     - ./inhost:/var/www/html/wp-content/plugins/inhost/
 mysql:
-  image: mysql:5.7
-  volumes:
-    - /data/mysql:/var/lib/myslql
-  environment:
-    - MYSQL_ROOT_PASSWORD=password
-    - MYSQL_DATABASE=wordpress
+    image: mysql:5.7
+    volumes:
+      - /data/mysql:/var/lib/mysql
+    environment:
+     - MYSQL_ROOT_PASSWORD=password
+     - MYSQL_DATABASE=wordpress
